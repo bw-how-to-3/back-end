@@ -31,13 +31,13 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter
                 "/swagger-resource/**",
                 "/swagger-ui.html",
                 "/v2/api-docs",
-                "/webjars/**")
+                "/webjars/**",
+                "/createnewuser")
             .permitAll()
+            .antMatchers("/posts/**")
+            .authenticated()
             .antMatchers("/users/users",
-                "/users/user/**",
-                "/carts/cart/**",
-                "/products/products",
-                "/products/product/**")
+                "/users/user/**")
             .hasRole("ADMIN")
             .antMatchers(HttpMethod.POST,
                 "/users/user/**")
@@ -45,8 +45,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter
             .antMatchers(HttpMethod.DELETE,
                 "/users/user/**")
             .hasRole("ADMIN")
-            .antMatchers("/carts/user")
-            .authenticated()
 
             .and()
             .exceptionHandling()
@@ -55,7 +53,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter
             .disable();
         http.headers()
             .frameOptions()
-            .deny();
+            .disable();
         http.logout()
             .disable();
     }

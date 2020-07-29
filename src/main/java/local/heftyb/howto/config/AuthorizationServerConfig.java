@@ -17,7 +17,6 @@ public class AuthorizationServerConfig
     extends AuthorizationServerConfigurerAdapter
 {
 
-
         static final String CLIENT_ID = System.getenv("OAUTHCLIENTID");
         static final String CLIENT_SECRET = System.getenv("OAUTHCLIENTSECRET"); // read from environment variable
 

@@ -2,6 +2,7 @@ package local.heftyb.howto.services;
 
 import local.heftyb.howto.exceptions.ResourceNotFoundException;
 import local.heftyb.howto.models.Post;
+import local.heftyb.howto.models.User;
 import local.heftyb.howto.models.Vote;
 import local.heftyb.howto.repository.PostRepository;
 import local.heftyb.howto.repository.VoteRepository;
@@ -22,6 +23,9 @@ public class PostServiceImp implements PostService
 
     @Autowired
     VoteRepository voterepo;
+
+    @Autowired
+    UserService userService;
 
     @Override
     public List<Post> findAll()
@@ -71,13 +75,21 @@ public class PostServiceImp implements PostService
 
         newPost.setTitle(post.getTitle());
         newPost.setBody(post.getBody());
-        newPost.setUser(post.getUser());
+
+        newPost.setUser(userService.findUserById(post.getUser().getUserid()));
+
+        newPost.setUpvotes(post.getUpvotes());
+        newPost.setDownvotes(post.getDownvotes());
+
 
         for (Vote v :
             post.getVotes())
         {
-            newPost.addVotes(v);
+            //newPost.addVotes(v);
+            User addUser = userService.findUserById(v.getUser().getUserid());
+            newPost.getVotes().add(new Vote(addUser, newPost));
         }
+
 
         return postrepo.save(newPost);
     }

@@ -35,7 +35,7 @@ public class Post extends Auditable
 
     @ManyToOne
     @JoinColumn(name = "userid")
-    @JsonIgnoreProperties("posts")
+    @JsonIgnoreProperties(value = "posts")
     private User user;
 
     public Post()

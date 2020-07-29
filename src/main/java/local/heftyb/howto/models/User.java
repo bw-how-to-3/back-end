@@ -58,7 +58,7 @@ public class User extends Auditable
         String password)
     {
         this.username = username;
-        this.password = password;
+        this.setPassword(password);
     }
 
     public long getUserid()

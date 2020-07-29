@@ -27,6 +27,12 @@ public class Vote extends Auditable implements Serializable
     {
     }
 
+    public Vote(User user, Post post)
+    {
+        this.post = post;
+        this.user = user;
+    }
+
     public User getUser()
     {
         return user;
