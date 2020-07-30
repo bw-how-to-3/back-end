@@ -132,6 +132,7 @@ public class PostServiceImp implements PostService
     {
         postrepo.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException("Post id " + id + " not found!"));
+        postrepo.deleteById(id);
     }
 
     @Override

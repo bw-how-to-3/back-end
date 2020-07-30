@@ -52,7 +52,7 @@ public class PostController
             .buildAndExpand(newPost.getPostid()).toUri();
         responseHeaders.setLocation(newPostURI);
 
-        return new ResponseEntity<>(newPost, responseHeaders, HttpStatus.OK);
+        return new ResponseEntity<>(newPost, responseHeaders, HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/post/{postid}",

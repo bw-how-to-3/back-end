@@ -64,6 +64,7 @@ public class UserServiceImp implements UserService
     {
         userrepo.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException("User id " + id + " not found!"));
+        userrepo.deleteById(id);
     }
 
     @Transactional
