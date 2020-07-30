@@ -40,10 +40,16 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter
                 "/users/user/**")
             .hasRole("ADMIN")
             .antMatchers(HttpMethod.POST,
-                "/users/user/**")
-            .hasRole("ADMIN")
+                "/users/user/**",
+                "/posts/post")
+            .authenticated()
+            .antMatchers(HttpMethod.PUT,
+                "/users/user/**",
+                "/posts/post")
+            .authenticated()
             .antMatchers(HttpMethod.DELETE,
-                "/users/user/**")
+                "/users/user/**",
+                "/posts/**")
             .hasRole("ADMIN")
 
             .and()

@@ -14,13 +14,13 @@ public class Vote extends Auditable implements Serializable
     @Id
     @ManyToOne
     @JoinColumn(name = "userid")
-    @JsonIgnoreProperties("votedpost")
+    @JsonIgnoreProperties({"votedpost", "posts"})
     private User user;
 
     @Id
     @ManyToOne
     @JoinColumn(name = "postid")
-    @JsonIgnoreProperties("votes")
+    @JsonIgnoreProperties({"votes", "user"})
     private Post post;
 
     public Vote()
