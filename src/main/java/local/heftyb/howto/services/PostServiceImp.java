@@ -71,7 +71,7 @@ public class PostServiceImp implements PostService
 
         Post newPost = new Post();
 
-        if (newPost.getPostid() != 0)
+        if (post.getPostid() != 0)
         {
             postrepo.findById(post.getPostid())
                 .orElseThrow(() -> new ResourceNotFoundException("Post id " + post.getPostid() + " not Found!"));
