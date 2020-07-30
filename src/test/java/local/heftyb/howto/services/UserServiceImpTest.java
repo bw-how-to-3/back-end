@@ -27,7 +27,6 @@ public class UserServiceImpTest
     @Autowired
     private PostService postService;
 
-//    List<User> userList = new ArrayList<>();
 
     @org.junit.Before
     public void setUp() throws Exception
