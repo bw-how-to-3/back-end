@@ -1,9 +1,6 @@
 # How-To back-end
 
-# Full documentation at
-```
-https://heftyb-how-to.herokuapp.com/swagger-ui.html#/
-```
+# [Full documentation] (https://heftyb-how-to.herokuapp.com/swagger-ui.html#/)
 
 
 ## Create new User - returns token
@@ -51,6 +48,22 @@ PUT /posts/post/{postid}
 ## delete post - authorized users
 ```
 DELETE /posts/post/{postid}
+```
+
+## get all post by current user - authorized users
+
+```
+GET /posts/user
+```
+
+## upvote / downvote post - authorized users
+```
+PUT /posts/post/vote/{postid}
+```
+requires boolean
+```
+false - will upvote
+true - will downvote
 ```
 
 ## get all users - admin only
