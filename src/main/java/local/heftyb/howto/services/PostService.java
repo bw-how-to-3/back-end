@@ -14,6 +14,8 @@ public interface PostService
 
     List<Post> findByTitleLike(String title);
 
+    List<Post> findUsersPost();
+
     Post save(Post post);
 
     Post update(
@@ -21,4 +23,8 @@ public interface PostService
         long id);
 
     void delete(long id);
+
+    void downvote(long id);
+
+    void upvote(long id);
 }

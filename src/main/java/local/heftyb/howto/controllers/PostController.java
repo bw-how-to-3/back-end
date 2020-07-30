@@ -31,12 +31,13 @@ public class PostController
             HttpStatus.OK);
     }
 
-//    @GetMapping(value = "/user",
-//    produces = {"application/json"})
-//    public ResponseEntity<?> listUsersPost()
-//    {
-//        //code to get user by auth token and return post list
-//    }
+    @GetMapping(value = "/user",
+    produces = {"application/json"})
+    public ResponseEntity<?> listUsersPost()
+    {
+        List<Post> list = postService.findUsersPost();
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
 
     @PostMapping(value = "/post",
     consumes = "application/json", produces = "application/json")
@@ -69,6 +70,24 @@ public class PostController
     {
         postService.delete(postid);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping(value = "/post/vote/{postid}",
+    consumes = {"application/json"}, produces = {"application/json"})
+    public ResponseEntity<?> voteOnPost (@RequestBody boolean isDownVote, @PathVariable long postid)
+    {
+        if (isDownVote)
+        {
+
+            postService.downvote(postid);
+        } else
+        {
+            postService.upvote(postid);
+        }
+
+        Post votedPost = postService.findPostById(postid);
+
+        return new ResponseEntity<>(votedPost, HttpStatus.OK);
     }
 
 }
