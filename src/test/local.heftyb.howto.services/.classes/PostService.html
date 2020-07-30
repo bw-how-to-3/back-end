@@ -1,0 +1,77 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: PostService</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">local.heftyb.howto.services</a> ]
+</div>
+
+<h1>Coverage Summary for Class: PostService (local.heftyb.howto.services)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">PostService</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package local.heftyb.howto.services;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import local.heftyb.howto.models.Post;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import java.util.List;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;public interface PostService
+<i>8</i>&nbsp;{
+<i>9</i>&nbsp;    List&lt;Post&gt; findAll();
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;    Post findPostById(long id);
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;    Post findByTitle(String title);
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;    List&lt;Post&gt; findByTitleLike(String title);
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;    List&lt;Post&gt; findUsersPost();
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;    Post save(Post post);
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;    Post update(
+<i>22</i>&nbsp;        Post post,
+<i>23</i>&nbsp;        long id);
+<i>24</i>&nbsp;
+<i>25</i>&nbsp;    void delete(long id);
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;    void downvote(long id);
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;    void upvote(long id);
+<i>30</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-07-30 16:40</div>
+</div>
+</body>
+</html>
