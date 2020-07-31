@@ -409,3 +409,13 @@ GET /users/user/username/{username}
 ```
 GET /users/user/username/like/{username}
 ```
+
+## add admin role to current user - authorized
+```
+PUT /roles/user{userid}
+```
+## delete user by id
+```
+DELETE /users/user/{userid}
+```
+
