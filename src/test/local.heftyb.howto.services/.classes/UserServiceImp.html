@@ -47,30 +47,18 @@
 </td>
 <td class="coverageStat">
   <span class="percent">
-    63.6%
+    53.3%
   </span>
   <span class="absValue">
-    (35/ 55)
+    (24/ 45)
   </span>
 </td>
 </tr>
   <tr>
-    <td class="name">UserServiceImp$$EnhancerBySpringCGLIB$$55afaf8a</td>
+    <td class="name">UserServiceImp$$EnhancerBySpringCGLIB$$ca31dc6e</td>
   </tr>
   <tr>
-    <td class="name">UserServiceImp$$EnhancerBySpringCGLIB$$55afaf8a$$FastClassBySpringCGLIB$$218379f4</td>
-  </tr>
-  <tr>
-    <td class="name">UserServiceImp$$EnhancerBySpringCGLIB$$afd573d8</td>
-  </tr>
-  <tr>
-    <td class="name">UserServiceImp$$EnhancerBySpringCGLIB$$afd573d8$$FastClassBySpringCGLIB$$1ea0c007</td>
-  </tr>
-  <tr>
-    <td class="name">UserServiceImp$$EnhancerBySpringCGLIB$$e93472db</td>
-  </tr>
-  <tr>
-    <td class="name">UserServiceImp$$EnhancerBySpringCGLIB$$e93472db$$FastClassBySpringCGLIB$$1e01778f</td>
+    <td class="name">UserServiceImp$$EnhancerBySpringCGLIB$$ca31dc6e$$FastClassBySpringCGLIB$$9223408b</td>
   </tr>
   <tr>
     <td class="name">UserServiceImp$$FastClassBySpringCGLIB$$7b960798</td>
@@ -87,10 +75,10 @@
 </td>
 <td class="coverageStat">
   <span class="percent">
-    63.6%
+    53.3%
   </span>
   <span class="absValue">
-    (35/ 55)
+    (24/ 45)
   </span>
 </td>
 </tr>
@@ -167,68 +155,69 @@
 <b class="fc"><i>65</i>&nbsp;        userrepo.findById(id)</b>
 <b class="fc"><i>66</i>&nbsp;            .orElseThrow(() -&gt; new ResourceNotFoundException(&quot;User id &quot; + id + &quot; not found!&quot;));</b>
 <b class="fc"><i>67</i>&nbsp;        userrepo.deleteById(id);</b>
-<b class="nc"><i>68</i>&nbsp;    }</b>
+<b class="fc"><i>68</i>&nbsp;    }</b>
 <i>69</i>&nbsp;
 <i>70</i>&nbsp;    @Transactional
 <i>71</i>&nbsp;    @Override
 <i>72</i>&nbsp;    public User save(User user)
-<b class="fc"><i>73</i>&nbsp;    {</b>
+<i>73</i>&nbsp;    {
 <b class="fc"><i>74</i>&nbsp;        User user1 = new User();</b>
-<b class="fc"><i>75</i>&nbsp;</b>
+<i>75</i>&nbsp;
 <b class="fc"><i>76</i>&nbsp;        if (user.getUserid() != 0)</b>
-<b class="nc"><i>77</i>&nbsp;        {</b>
+<i>77</i>&nbsp;        {
 <b class="nc"><i>78</i>&nbsp;            userrepo.findById(user.getUserid())</b>
 <b class="nc"><i>79</i>&nbsp;                .orElseThrow(() -&gt; new ResourceNotFoundException(&quot;User id &quot; + user.getUserid() + &quot; not found!&quot;));</b>
 <b class="nc"><i>80</i>&nbsp;            user1.setUserid(user.getUserid());</b>
 <i>81</i>&nbsp;        }
-<b class="fc"><i>82</i>&nbsp;</b>
+<i>82</i>&nbsp;
 <b class="fc"><i>83</i>&nbsp;        user1.setUsername(user.getUsername());</b>
 <b class="fc"><i>84</i>&nbsp;        user1.setPasswordNoEncrypt(user.getPassword());</b>
 <i>85</i>&nbsp;
-<b class="fc"><i>86</i>&nbsp;        for (UserRoles ur :</b>
+<i>86</i>&nbsp;        for (UserRoles ur :
 <b class="fc"><i>87</i>&nbsp;            user.getRoles())</b>
-<b class="nc"><i>88</i>&nbsp;        {</b>
-<b class="fc"><i>89</i>&nbsp;            Role newRole = roleService.findRoleById(ur.getRole()</b>
-<b class="fc"><i>90</i>&nbsp;                .getRoleid());</b>
-<b class="fc"><i>91</i>&nbsp;            user1.getRoles()</b>
-<b class="fc"><i>92</i>&nbsp;                .add(new UserRoles(user1,</b>
-<b class="nc"><i>93</i>&nbsp;                    newRole));</b>
-<b class="fc"><i>94</i>&nbsp;        }</b>
+<i>88</i>&nbsp;        {
+<b class="nc"><i>89</i>&nbsp;            Role newRole = roleService.findRoleById(ur.getRole()</b>
+<b class="nc"><i>90</i>&nbsp;                .getRoleid());</b>
+<b class="nc"><i>91</i>&nbsp;            user1.getRoles()</b>
+<b class="nc"><i>92</i>&nbsp;                .add(new UserRoles(user1,</b>
+<i>93</i>&nbsp;                    newRole));
+<b class="nc"><i>94</i>&nbsp;        }</b>
 <i>95</i>&nbsp;
-<b class="fc"><i>96</i>&nbsp;        for (Post p :</b>
+<i>96</i>&nbsp;        for (Post p :
 <b class="fc"><i>97</i>&nbsp;            user.getPosts())</b>
-<b class="nc"><i>98</i>&nbsp;        {</b>
+<i>98</i>&nbsp;        {
 <b class="nc"><i>99</i>&nbsp;            Post newPost = postrepo.findById(p.getPostid())</b>
 <b class="nc"><i>100</i>&nbsp;                .orElseThrow(() -&gt; new ResourceNotFoundException(&quot;Post id &quot; + p.getPostid() + &quot; not found!&quot;));</b>
 <b class="nc"><i>101</i>&nbsp;            user1.addPost(newPost);</b>
 <b class="nc"><i>102</i>&nbsp;        }</b>
 <i>103</i>&nbsp;
-<b class="fc"><i>104</i>&nbsp;        for (Vote v :</b>
+<i>104</i>&nbsp;        for (Vote v :
 <b class="fc"><i>105</i>&nbsp;            user.getVotedPost())</b>
-<b class="nc"><i>106</i>&nbsp;        {</b>
+<i>106</i>&nbsp;        {
 <b class="nc"><i>107</i>&nbsp;            Post newPost = postrepo.findById(v.getPost().getPostid())</b>
 <b class="nc"><i>108</i>&nbsp;                .orElseThrow(() -&gt; new ResourceNotFoundException(&quot;Post id &quot; + v.getPost().getPostid() + &quot; not found!&quot;));</b>
 <b class="nc"><i>109</i>&nbsp;            user1.getVotedPost().add(new Vote(user1, newPost));</b>
 <b class="nc"><i>110</i>&nbsp;        }</b>
-<b class="fc"><i>111</i>&nbsp;</b>
+<i>111</i>&nbsp;
 <b class="fc"><i>112</i>&nbsp;       return userrepo.save(user1);</b>
 <i>113</i>&nbsp;    }
 <i>114</i>&nbsp;
 <i>115</i>&nbsp;    @Transactional
 <i>116</i>&nbsp;    @Override
-<i>117</i>&nbsp;    public User update(
-<i>118</i>&nbsp;        User user,
-<i>119</i>&nbsp;        long id)
-<b class="nc"><i>120</i>&nbsp;    {</b>
-<b class="nc"><i>121</i>&nbsp;        return null;</b>
-<i>122</i>&nbsp;    }
-<i>123</i>&nbsp;}
+<i>117</i>&nbsp;    public void addRoleAdmin(long id)
+<i>118</i>&nbsp;    {
+<b class="nc"><i>119</i>&nbsp;        User user = findUserById(id);</b>
+<b class="nc"><i>120</i>&nbsp;        Role role = roleService.findByName(&quot;admin&quot;);</b>
+<i>121</i>&nbsp;
+<b class="nc"><i>122</i>&nbsp;        user.getRoles().add(new UserRoles(user, role));</b>
+<b class="nc"><i>123</i>&nbsp;    }</b>
+<i>124</i>&nbsp;}
 </div>
 </div>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2020-07-30 16:40</div>
+    <div style="float:right;">generated on 2020-07-31 02:02</div>
 </div>
 </body>
 </html>

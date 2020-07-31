@@ -150,14 +150,30 @@ public class PostControllerTest
     @Test
     public void voteOnPost() throws Exception
     {
-        String urls = "/posts/post/105";
+        String urls = "/posts/post/vote/105";
         Post votedPost = new Post("VOTE", "VOTED POST");
         votedPost.setPostid(105);
 
         ObjectMapper mapper = new ObjectMapper();
-        String postString = mapper.writeValueAsString(votedPost);
+        String postString = mapper.writeValueAsString(false);
 
         Mockito.when(postService.findPostById(105)).thenReturn(votedPost);
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.put(urls).accept(MediaType.APPLICATION_JSON)
+            .contentType(MediaType.APPLICATION_JSON).content(postString);
+        mockMvc.perform(requestBuilder).andExpect(status().isOk()).andDo(MockMvcResultHandlers.print());
+    }
+
+    @Test
+    public void voteOnPost2() throws Exception
+    {
+        String urls = "/posts/post/vote/106";
+        Post votedPost = new Post("VOTE", "VOTED POST");
+        votedPost.setPostid(106);
+
+        ObjectMapper mapper = new ObjectMapper();
+        String postString = mapper.writeValueAsString(true);
+
+        Mockito.when(postService.findPostById(106)).thenReturn(votedPost);
         RequestBuilder requestBuilder = MockMvcRequestBuilders.put(urls).accept(MediaType.APPLICATION_JSON)
             .contentType(MediaType.APPLICATION_JSON).content(postString);
         mockMvc.perform(requestBuilder).andExpect(status().isOk()).andDo(MockMvcResultHandlers.print());

@@ -38,7 +38,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter
             .authenticated()
             .antMatchers("/users/users",
                 "/users/user/**")
-            .hasRole("ADMIN")
+            .authenticated()
             .antMatchers(HttpMethod.POST,
                 "/users/user/**",
                 "/posts/post")
