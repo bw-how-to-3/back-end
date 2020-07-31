@@ -42,26 +42,26 @@
   <td class="name">RolesController</td>
 <td class="coverageStat">
   <span class="percent">
-    0%
+    100%
   </span>
   <span class="absValue">
-    (0/ 1)
+    (1/ 1)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    0%
+    100%
   </span>
   <span class="absValue">
-    (0/ 1)
+    (2/ 2)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    0%
+    100%
   </span>
   <span class="absValue">
-    (0/ 1)
+    (3/ 3)
   </span>
 </td>
 </tr>
@@ -74,15 +74,40 @@
 
 <div class="sourceCode"><i>1</i>&nbsp;package local.heftyb.howto.controllers;
 <i>2</i>&nbsp;
-<b class="nc"><i>3</i>&nbsp;public class RolesController</b>
-<i>4</i>&nbsp;{
-<i>5</i>&nbsp;}
+<i>3</i>&nbsp;import local.heftyb.howto.models.User;
+<i>4</i>&nbsp;import local.heftyb.howto.services.RoleService;
+<i>5</i>&nbsp;import local.heftyb.howto.services.UserService;
+<i>6</i>&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+<i>7</i>&nbsp;import org.springframework.beans.factory.annotation.Value;
+<i>8</i>&nbsp;import org.springframework.http.HttpStatus;
+<i>9</i>&nbsp;import org.springframework.http.ResponseEntity;
+<i>10</i>&nbsp;import org.springframework.web.bind.annotation.PathVariable;
+<i>11</i>&nbsp;import org.springframework.web.bind.annotation.PutMapping;
+<i>12</i>&nbsp;import org.springframework.web.bind.annotation.RequestMapping;
+<i>13</i>&nbsp;import org.springframework.web.bind.annotation.RestController;
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;@RestController
+<i>16</i>&nbsp;@RequestMapping(&quot;/roles&quot;)
+<b class="fc"><i>17</i>&nbsp;public class RolesController</b>
+<i>18</i>&nbsp;{
+<i>19</i>&nbsp;    @Autowired
+<i>20</i>&nbsp;    private UserService userService;
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;
+<i>23</i>&nbsp;    @PutMapping(value = &quot;/user/{userid}&quot;)
+<i>24</i>&nbsp;    public ResponseEntity&lt;?&gt; addAdminRole(@PathVariable long userid)
+<i>25</i>&nbsp;    {
+<b class="fc"><i>26</i>&nbsp;        userService.addRoleAdmin(userid);</b>
+<i>27</i>&nbsp;
+<b class="fc"><i>28</i>&nbsp;        return new ResponseEntity&lt;&gt;(HttpStatus.OK);</b>
+<i>29</i>&nbsp;    }
+<i>30</i>&nbsp;}
 </div>
 </div>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2020-07-30 16:40</div>
+    <div style="float:right;">generated on 2020-07-31 02:02</div>
 </div>
 </body>
 </html>

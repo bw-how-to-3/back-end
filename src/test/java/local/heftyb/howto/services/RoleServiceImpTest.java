@@ -8,6 +8,7 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -25,6 +26,7 @@ public class RoleServiceImpTest
     @Before
     public void setUp() throws Exception
     {
+        MockitoAnnotations.initMocks(this);
     }
 
     @After
@@ -35,7 +37,9 @@ public class RoleServiceImpTest
     @Test
     public void a_findAll()
     {
-        assertEquals(2, roleService.findAll().size());
+        Role newRole = new Role("ADMIN");
+        newRole = roleService.save(newRole);
+        assertEquals(1, roleService.findAll().size());
     }
 
     @Test
@@ -50,7 +54,7 @@ public class RoleServiceImpTest
         Role role = new Role("test");
         role = roleService.save(role);
 
-        assertEquals(3, roleService.findAll().size());
+        assertEquals(2, roleService.findAll().size());
     }
 
     @Test

@@ -4,6 +4,7 @@ import local.heftyb.howto.HowToApplication;
 import local.heftyb.howto.models.Post;
 import local.heftyb.howto.models.User;
 import org.junit.FixMethodOrder;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.mockito.MockitoAnnotations;
@@ -42,7 +43,7 @@ public class UserServiceImpTest
     @org.junit.Test
     public void c_findAll()
     {
-        assertEquals(3, userService.findAll().size());
+        assertEquals(2, userService.findAll().size());
     }
 
     @org.junit.Test
@@ -61,14 +62,14 @@ public class UserServiceImpTest
     @org.junit.Test
     public void e_findUserById()
     {
-        assertEquals("admin", userService.findUserById(3).getUsername());
+        assertEquals("User1", userService.findUserById(userService.findAll().get(0).getUserid()).getUsername());
     }
 
     @org.junit.Test
     public void f_delete()
     {
-        userService.delete(3);
-        assertEquals(2, userService.findAll().size());
+        userService.delete(userService.findAll().get(0).getUserid());
+        assertEquals(1, userService.findAll().size());
     }
 
     @org.junit.Test
@@ -83,6 +84,12 @@ public class UserServiceImpTest
         p1.setUser(newUser);
 
         p1 = postService.save(p1);
-        assertEquals(3, userService.findAll().size());
+        assertEquals(2, userService.findAll().size());
+    }
+
+    @Test
+    public void name()
+    {
+
     }
 }

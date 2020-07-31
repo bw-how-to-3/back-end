@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
@@ -42,25 +44,32 @@ public class PostServiceImpTest
     @Test
     public void a_findAll()
     {
+        User user = new User("UserName", "password");
+        user = userService.save(user);
+        Post post = new Post("TITLE", "BODY");
+
+        post.setUser(user);
+
+        post = postService.save(post);
         assertEquals(1, postService.findAll().size());
     }
 
     @Test
     public void b_findPostById()
     {
-        assertEquals("TEST", postService.findPostById(postService.findAll().get(0).getPostid()).getTitle());
+        assertEquals("TITLE", postService.findPostById(postService.findAll().get(0).getPostid()).getTitle());
     }
 
     @Test
     public void c_findByTitle()
     {
-        assertEquals("TEST", postService.findByTitle("TEST").getTitle());
+        assertEquals("TITLE", postService.findByTitle("TITLE").getTitle());
     }
 
     @Test
     public void d_findByTitleLike()
     {
-        assertEquals(1, postService.findByTitleLike("TE").size());
+        assertEquals(1, postService.findByTitleLike("TI").size());
     }
 
     @Test
@@ -75,47 +84,18 @@ public class PostServiceImpTest
     }
 
     @Test
+    public void f_update()
+    {
+        Post updatePost = new Post();
+        updatePost.setTitle("UPDATED");
+        postService.update(updatePost, postService.findAll().get(0).getPostid());
+        assertEquals("UPDATED", postService.findAll().get(0).getTitle());
+    }
+
+    @Test
     public void z_delete()
     {
         postService.delete(postService.findAll().get(1).getPostid());
         assertEquals(1, postService.findAll().size());
-    }
-
-    @Test
-    public void f_findUsersPost()
-    {
-        assertEquals(1, userService.findAll().get(0).getPosts().size());
-    }
-
-    @Test
-    public void g_downvote()
-    {
-        Post votedPost = postService.findAll().get(0);
-        User user = userService.findAll().get(0);
-
-        votedPost.setDownvotes(votedPost.getDownvotes() + 1);
-
-        Vote newVote = new Vote(user, votedPost);
-
-        votedPost.getVotes().add(newVote);
-        user.getVotedPost().add(newVote);
-
-        assertEquals(1, user.getVotedPost().size());
-    }
-
-    @Test
-    public void h_upvote()
-    {
-        Post votedPost = postService.findAll().get(0);
-        User user = userService.findAll().get(0);
-
-        votedPost.setUpvotes(votedPost.getUpvotes() + 1);
-
-        Vote newVote = new Vote(user, votedPost);
-
-        votedPost.getVotes().add(newVote);
-        user.getVotedPost().add(newVote);
-
-        assertEquals(2, user.getVotedPost().size());
     }
 }

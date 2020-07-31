@@ -114,10 +114,11 @@ public class UserServiceImp implements UserService
 
     @Transactional
     @Override
-    public User update(
-        User user,
-        long id)
+    public void addRoleAdmin(long id)
     {
-        return null;
+        User user = findUserById(id);
+        Role role = roleService.findByName("admin");
+
+        user.getRoles().add(new UserRoles(user, role));
     }
 }
